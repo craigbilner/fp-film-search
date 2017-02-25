@@ -1,3 +1,5 @@
-/**
- * Created by craigbilner on 25/02/2017.
- */
+// @flow
+
+const app = () => {};
+
+module.exports = app;

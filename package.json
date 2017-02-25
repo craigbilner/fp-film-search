@@ -4,13 +4,18 @@
   "description": "A frameworkless FP approach to a search box and list thing Edit",
   "main": "index.js",
   "dependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-airbnb-flow": "^1.0.2",
+    "eslint-plugin-import": "^2.2.0",
     "flow-bin": "^0.40.0",
     "jest": "^19.0.2",
     "rollup": "^0.41.4"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "jest"
+    "lint": "eslint index.js",
+    "test": "npm run lint && jest"
   },
   "repository": {
     "type": "git",
