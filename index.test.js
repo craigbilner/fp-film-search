@@ -1,4 +1,4 @@
-const app = require('./index');
+import app from './src/app';
 
 describe('the app', () => {
   test('should not throw', () => {

@@ -1,5 +1,8 @@
 // @flow
 
-const app = () => {};
+import app from './src/app';
+import model from './src/model';
+import update from './src/update';
+import view from './src/view';
 
-module.exports = app;
+app(model, update, view);
