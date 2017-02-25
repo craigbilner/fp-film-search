@@ -1,0 +1,30 @@
+{
+  "name": "fp-film-search",
+  "version": "0.0.1",
+  "description": "A frameworkless FP approach to a search box and list thing Edit",
+  "main": "index.js",
+  "dependencies": {
+    "flow-bin": "^0.40.0",
+    "jest": "^19.0.2",
+    "rollup": "^0.41.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craigbilner/fp-film-search.git"
+  },
+  "keywords": [
+    "FP",
+    "frameworkless",
+    "vanilla"
+  ],
+  "author": "Craig Bilner",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/craigbilner/fp-film-search/issues"
+  },
+  "homepage": "https://github.com/craigbilner/fp-film-search#readme"
+}
