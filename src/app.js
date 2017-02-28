@@ -1,6 +1,6 @@
 // @flow
 
-const app = (model, update, view, el) => {
+const app = (model, update, view, el, opts) => {
   el.innerHTML = 'test';
 };
 

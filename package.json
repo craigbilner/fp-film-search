@@ -14,13 +14,14 @@
     "eslint-plugin-import": "^2.2.0",
     "flow-bin": "^0.40.0",
     "jest": "^19.0.2",
-    "rollup": "^0.41.4"
+    "rollup": "^0.41.4",
+    "rollup-plugin-replace": "^1.1.1"
   },
   "devDependencies": {},
   "scripts": {
     "lint": "eslint index.js",
     "test": "npm run lint && jest --watch",
-    "build": "rollup index.js --output dist/bundle.js --format es"
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
