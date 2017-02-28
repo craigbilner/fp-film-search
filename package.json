@@ -19,8 +19,8 @@
   "devDependencies": {},
   "scripts": {
     "lint": "eslint index.js",
-    "test": "npm run lint && jest",
-    "build-test": "rollup index.js --output dist/bundle.js --format cjs"
+    "test": "npm run lint && jest --watch",
+    "build": "rollup index.js --output dist/bundle.js --format es"
   },
   "repository": {
     "type": "git",

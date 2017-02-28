@@ -5,4 +5,4 @@ import model from './src/model';
 import update from './src/update';
 import view from './src/view';
 
-app(model, update, view);
+app(model, update, view, document.getElementById('root'));
