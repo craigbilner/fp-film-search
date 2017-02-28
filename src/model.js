@@ -1,5 +1,7 @@
 // @flow
 
-const model = {};
+const model = {
+  hasInitiated: false,
+};
 
 export default model;

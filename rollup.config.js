@@ -1,4 +1,5 @@
 import replace from 'rollup-plugin-replace';
+import flow from 'rollup-plugin-flow';
 
 export default {
   entry: 'index.js',
@@ -8,5 +9,6 @@ export default {
     replace({
       API_KEY: process.env.API_KEY,
     }),
+    flow(),
   ],
 };

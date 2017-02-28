@@ -5,6 +5,17 @@ import model from './src/model';
 import update from './src/update';
 import view from './src/view';
 
-app(model, update, view, document.getElementById('root'), {
-  API_KEY,
+const nodeUpdate = (id, html) => {
+  const node = document.getElementById(id);
+
+  if (node) {
+    node.innerHTML = html;
+  } else {
+    // eslint-disable-next-line no-console
+    console.error('unknown node', id);
+  }
+};
+
+app(model, update, view, nodeUpdate, {
+  key: 'API_KEY',
 });
