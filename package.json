@@ -9,6 +9,8 @@
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
+    "chokidar-cli": "^1.2.0",
+    "clear": "^0.0.1",
     "eslint": "^3.16.1",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-airbnb-flow": "^1.0.2",
@@ -22,9 +24,14 @@
   },
   "devDependencies": {},
   "scripts": {
+    "watch": "chokidar index*.js ./src/*.js -c",
     "lint": "eslint index*.js && eslint src/*.js",
+    "lint-watch": "npm run watch 'clear && npm run lint'",
     "test": "npm run lint && jest --watch",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "build-watch": "npm run watch 'clear && npm run build'",
+    "flow": "flow",
+    "flow-watch": "npm run watch 'clear && npm run flow'"
   },
   "repository": {
     "type": "git",
