@@ -8,11 +8,8 @@ import type {
   AppOpts,
 } from './types';
 
-const makeUpdates = (nodeUpdate, view, update) => (CMD, model) => {
-  const htmlUpdates = view(update(CMD, model));
-
-  htmlUpdates.forEach(({ elId, html }) => nodeUpdate(elId, html));
-};
+const makeUpdates = (htmlUpdates, nodeUpdate, DOMEvents) =>
+  htmlUpdates.forEach(({ elId, html, events }) => nodeUpdate(elId, html, DOMEvents, events));
 
 const app = (model: Model,
              update: Update,
@@ -23,10 +20,21 @@ const app = (model: Model,
     AUTH_KEY: opts.key,
   });
 
-  const updateDOM = makeUpdates(nodeUpdate, view, update);
+  let newModel;
 
-  updateDOM({ CMD: 'INIT' }, modelWithKey);
-  updateDOM({ CMD: 'INITTED' }, modelWithKey);
+  const DOMEvents = eventCMD => (evt) => {
+    newModel = update({
+      CMD: eventCMD,
+      data: evt,
+    }, newModel);
+
+    makeUpdates(view(newModel), nodeUpdate, DOMEvents);
+  };
+
+  newModel = update({ CMD: 'INIT' }, modelWithKey);
+  makeUpdates(view(newModel), nodeUpdate, DOMEvents);
+  newModel = update({ CMD: 'INITTED' }, newModel);
+  makeUpdates(view(newModel), nodeUpdate, DOMEvents);
 };
 
 export default app;

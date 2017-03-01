@@ -17,6 +17,7 @@
     "eslint-plugin-import": "^2.2.0",
     "flow-bin": "^0.40.0",
     "jest": "^19.0.2",
+    "jsdom": "^9.11.0",
     "rollup": "^0.41.4",
     "rollup-plugin-flow": "^1.1.1",
     "rollup-plugin-replace": "^1.1.1",
