@@ -28,7 +28,7 @@
     "watch": "chokidar index*.js ./src/*.js -c",
     "lint": "eslint index*.js && eslint src/*.js",
     "lint-watch": "npm run watch 'clear && npm run lint'",
-    "test": "npm run lint && jest --watch",
+    "test": "npm run lint && jest --watch --bail",
     "build": "rollup -c",
     "build-watch": "npm run watch 'clear && npm run build'",
     "flow": "flow",

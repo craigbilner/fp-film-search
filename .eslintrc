@@ -5,6 +5,10 @@
     "document": true,
     "describe": true,
     "test": true,
-    "expect": true
+    "expect": true,
+    "fetch": true
+  },
+  "rules": {
+    "no-confusing-arrow": 0
   }
 }

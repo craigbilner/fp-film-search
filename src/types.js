@@ -1,9 +1,15 @@
 // @flow
 
-export type CMD = 'INIT' | 'INITTED' | 'SEARCH';
+export type CMD =
+  'INIT'
+    | 'INITTED'
+    | 'SEARCH'
+    | 'SEARCH_SUCCESS'
+    | 'SEARCH_FAIL';
 
 export type Model = {
   hasInitiated: boolean,
+  AUTH_KEY: string,
 };
 
 export type UpdateCMD = {
@@ -30,10 +36,14 @@ export type DOMUpdate = {
 export type View = (m: Model) => DOMUpdate[];
 
 // eslint-disable-next-line no-undef
-export type DOMEvents = (c : CMD) => (evt: UIEvent) => void;
-
-export type NodeUpdate = (id: string, html: string, de: DOMEvents, events?: Event[]) => void;
+export type DOMEventsType = (c: CMD) => (evt: UIEvent) => void;
 
 export type AppOpts = {
   key? : string,
+};
+
+export type HttpProps = {
+  OK: CMD,
+  ERR: CMD,
+  url: string,
 };
