@@ -70,4 +70,88 @@ describe('the app', () => {
       done();
     });
   });
+
+  test('should populate the DOM with the returned movies', (done) => {
+    jsdom.env('<div id="root"></div>', (err, w) => {
+      const doc = w.document;
+
+      global.fetch = () => Promise.resolve({
+        ok: true,
+        json() {
+          return Promise.resolve({
+            page: 1,
+            results: [
+              {
+                poster_path: '/rv6LVjTHswpRHeQr0s33McrXJor.jpg',
+                popularity: 1.129689,
+                id: 61129,
+                overview: 'The class system in Thailand today',
+                backdrop_path: '/8JbkUs00D9sonFXk1YQRr6cNBQ2.jpg',
+                vote_average: 3.75,
+                media_type: 'movie',
+                first_air_date: '2014-04-29',
+                origin_country: [
+                  'TH',
+                ],
+                genre_ids: [
+                  10766,
+                  18,
+                ],
+                original_language: 'en',
+                vote_count: 2,
+                name: 'Mam Ja',
+                original_name: 'แหม่มจ๋า',
+              },
+            ],
+            total_results: 38211,
+            total_pages: 1911,
+          });
+        },
+      });
+
+      app(model, update, view, doc, doc.getElementById('root'), opts);
+
+      const sb = doc.querySelector('#searchBox');
+      sb.value = 'jack';
+      const e = doc.createEvent('HTMLEvents');
+      e.initEvent('keyup', false, true);
+      sb.dispatchEvent(e);
+
+      setTimeout(() => {
+        const cards = doc.querySelectorAll('.movie-card');
+
+        expect(cards.length).toBe(1);
+
+        done();
+      }, 0);
+    });
+  });
+
+  test('should populate the DOM with error message on fail', (done) => {
+    jsdom.env('<div id="root"></div>', (err, w) => {
+      const doc = w.document;
+
+      global.fetch = () => Promise.reject({
+        message: 'an error',
+      });
+
+      app(model, update, view, doc, doc.getElementById('root'), opts);
+
+      const sb = doc.querySelector('#searchBox');
+      sb.value = 'jack';
+      const e = doc.createEvent('HTMLEvents');
+      e.initEvent('keyup', false, true);
+      sb.dispatchEvent(e);
+
+      setTimeout(() => {
+        const cards = doc.querySelectorAll('.movie-card');
+        const searchResults = doc.querySelector('.search-results_fail');
+
+        expect(cards.length).toBe(0);
+        expect(searchResults.textContent.trim()).toBe('Could not fetch results, try again...?');
+
+        done();
+      }, 0);
+    });
+  });
 });

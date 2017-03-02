@@ -7,9 +7,38 @@ export type CMD =
     | 'SEARCH_SUCCESS'
     | 'SEARCH_FAIL';
 
+export type MediaType = "movie";
+
+export type Language = "en";
+
+export type Movie = {
+  adult: boolean,
+  backdropPath: string,
+  genreIds: number[],
+  id: number,
+  mediaType: MediaType,
+  originalLanguage: Language,
+  originalTitle: string,
+  overview: string,
+  popularity: number,
+  posterPath: string,
+  releaseDate: ?Date,
+  title: string,
+  video: boolean,
+  voteAverage: number,
+  voteCount: number,
+};
+
 export type Model = {
   hasInitiated: boolean,
   AUTH_KEY: string,
+  searchFailed: boolean,
+  movies: {
+    page: number,
+    list: Movie[],
+    totalPages: number,
+    totalResults: number,
+  },
 };
 
 export type UpdateCMD = {
