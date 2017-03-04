@@ -15,14 +15,19 @@
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-airbnb-flow": "^1.0.2",
     "eslint-plugin-import": "^2.2.0",
+    "express": "^4.15.0",
     "flow-bin": "^0.40.0",
+    "helmet": "^3.4.1",
     "jest": "^19.0.2",
     "jsdom": "^9.11.0",
     "lodash.debounce": "^4.0.8",
+    "pug": "^2.0.0-beta11",
     "rollup": "^0.41.4",
     "rollup-plugin-commonjs": "^7.0.0",
     "rollup-plugin-flow": "^1.1.1",
+    "rollup-plugin-hash": "^1.2.0",
     "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-postcss": "^0.2.0",
     "rollup-plugin-replace": "^1.1.1",
     "sinon": "^1.17.7"
   },
@@ -33,9 +38,9 @@
     "lint-watch": "npm run watch 'clear && npm run lint'",
     "test": "npm run lint && jest --watch --bail",
     "build": "rollup -c",
-    "build-watch": "npm run watch 'clear && npm run build'",
     "flow": "flow",
-    "flow-watch": "npm run watch 'clear && npm run flow'"
+    "flow-watch": "npm run watch 'clear && npm run flow'",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

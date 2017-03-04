@@ -8,7 +8,7 @@ const toMovieCard = movie => `
   </div>
 `;
 
-const noResults = 'no results here!';
+const noResults = 'could not find any results :-(';
 
 const view = (model: Model) => {
   if (!model.hasInitiated) {

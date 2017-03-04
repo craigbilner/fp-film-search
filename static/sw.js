@@ -1,15 +1,4 @@
-const VERSION = 3;
-
-this.addEventListener('install', event => event.waitUntil(
-  caches
-    .open(`v${VERSION}`)
-    .then(cache => cache.addAll([
-      '/dist/bundle.js',
-      '/index.css',
-    ]))
-    .catch(e => console.error('Could not cache assets', e))
-  )
-);
+const VERSION = 5;
 
 this.addEventListener('fetch', event => event.respondWith(
   caches
