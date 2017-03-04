@@ -18,8 +18,11 @@
     "flow-bin": "^0.40.0",
     "jest": "^19.0.2",
     "jsdom": "^9.11.0",
+    "lodash.debounce": "^4.0.8",
     "rollup": "^0.41.4",
+    "rollup-plugin-commonjs": "^7.0.0",
     "rollup-plugin-flow": "^1.1.1",
+    "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "sinon": "^1.17.7"
   },

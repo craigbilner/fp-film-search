@@ -123,7 +123,7 @@ describe('the app', () => {
         expect(cards.length).toBe(1);
 
         done();
-      }, 0);
+      }, 200);
     });
   });
 

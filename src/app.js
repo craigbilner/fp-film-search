@@ -1,5 +1,6 @@
 // @flow
 
+import debounce from 'lodash.debounce';
 import type {
   Model,
   Update,
@@ -52,23 +53,39 @@ const DOMEvents = eventCMD => (evt) => {
 // eslint-disable-next-line no-undef
 const getEnv = () => typeof global !== 'undefined' ? global : window;
 
-export const http = ({ OK, ERR, url } : HttpProps) =>
-  getEnv().fetch(url)
-    .then((resp) => {
-      if (resp.ok) {
-        return resp.json();
-      }
+export const http = (function http() {
+  let httpQueue = [];
 
-      throw new Error(resp.statusText);
-    })
-    .then((data) => {
-      newModel = appUpdate({ CMD: OK, data }, newModel);
+  const performUpdates = (url, CMD, data) => {
+    if (url === httpQueue[httpQueue.length - 1]) {
+      newModel = appUpdate({ CMD, data }, newModel);
       makeUpdates(appView(newModel), DOMEvents);
-    })
-    .catch((e) => {
-      newModel = appUpdate({ CMD: ERR, data: e }, newModel);
-      makeUpdates(appView(newModel), DOMEvents);
-    });
+      httpQueue = [];
+    }
+  };
+
+  return debounce(({ OK, ERR, url } : HttpProps) => {
+    httpQueue.push(url);
+
+    getEnv()
+      .fetch(url)
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.json();
+        }
+
+        throw new Error(resp.statusText);
+      })
+      .then((data) => {
+        performUpdates(url, OK, data);
+      })
+      .catch((e) => {
+        performUpdates(url, ERR, e);
+      });
+  }, 100, {
+    leading: true,
+  });
+}());
 
 const app = (model: Model,
              update: Update,
