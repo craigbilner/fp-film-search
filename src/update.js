@@ -65,12 +65,17 @@ const update = ({ CMD, data = {} }: UpdateCMD, model: Model) => {
       hasInitiated: true,
     });
   } else if (CMD === 'SEARCH') {
-    if (data.target.value) {
+    if (data.target.value && (data.target.value !== model.searchTerm)) {
       http({
         OK: 'SEARCH_SUCCESS',
         ERR: 'SEARCH_FAIL',
         url: makeURL(model.AUTH_KEY, data.target.value),
       });
+
+      return changeModel(model, {
+        searchTerm: data.target.value,
+      });
+    } else if (data.target.value) {
       return model;
     }
 

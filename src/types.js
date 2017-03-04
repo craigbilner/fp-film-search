@@ -32,6 +32,7 @@ export type Movie = {
 export type Model = {
   hasInitiated: boolean,
   AUTH_KEY: string,
+  searchTerm: string,
   searchFailed: boolean,
   movies: {
     page: number,
