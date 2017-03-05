@@ -5,6 +5,15 @@ const model = {
   AUTH_KEY: '',
   searchFailed: false,
   searchTerm: '',
+  images: {
+    baseUrl: '',
+    secureBaseUrl: '',
+    backdropSizes: [],
+    logoSizes: [],
+    posterSizes: [],
+    profileSizes: [],
+    stillSizes: [],
+  },
   movies: {
     page: 0,
     list: [],

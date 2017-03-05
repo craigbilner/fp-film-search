@@ -21,6 +21,7 @@
     "jest": "^19.0.2",
     "jsdom": "^9.11.0",
     "lodash.debounce": "^4.0.8",
+    "nodemon": "^1.11.0",
     "pug": "^2.0.0-beta11",
     "rollup": "^0.41.4",
     "rollup-plugin-commonjs": "^7.0.0",
@@ -33,14 +34,15 @@
   },
   "devDependencies": {},
   "scripts": {
-    "watch": "chokidar index*.js ./src/*.js -c",
+    "watch": "chokidar index*.js index.css ./src/*.js -c",
     "lint": "eslint index*.js && eslint src/*.js",
     "lint-watch": "npm run watch 'clear && npm run lint'",
     "test": "npm run lint && jest --watch --bail",
     "build": "rollup -c",
+    "build-watch": "API_KEY=678f580923665e6cdfc4657bd75c0877 npm run watch 'clear && npm run build'",
     "flow": "flow",
     "flow-watch": "npm run watch 'clear && npm run flow'",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",

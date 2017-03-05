@@ -40,6 +40,15 @@ export type Model = {
     totalPages: number,
     totalResults: number,
   },
+  images: {
+    backdropSizes: string[],
+    baseUrl: string,
+    logoSizes: string[],
+    posterSizes: string[],
+    profileSizes: string[],
+    secureBaseUrl: string,
+    stillSizes: string[],
+  },
 };
 
 export type UpdateCMD = {

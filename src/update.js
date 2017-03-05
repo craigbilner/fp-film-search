@@ -44,7 +44,7 @@ const movieToModel = m => ({
 const changeModel = (model, update) => Object.assign({}, model, update);
 
 // eslint-disable-next-line camelcase
-const byMovie = ({ media_type }) => media_type === 'movie';
+const byMovie = ({ media_type, poster_path }) => media_type === 'movie' && poster_path;
 
 const addMovies = (model, { page, results, total_pages, total_results }) =>
   changeModel(model, {

@@ -93,24 +93,62 @@ const app = (model: Model,
              doc: Document, // eslint-disable-line no-undef
              rootElement: ?HTMLElement, // eslint-disable-line no-undef
              opts: AppOpts = {}) => {
-  if (!rootElement) {
-    return;
-  }
-
-  // eslint-disable-next-line no-param-reassign
-  rootElement.innerHTML = '<div id="app"></div>';
-
   appUpdate = update;
   appView = view;
   appNodeUpdate = nodeUpdate(doc);
-  const modelWithKey = Object.assign({}, model, {
-    AUTH_KEY: opts.key,
-  });
 
-  newModel = appUpdate({ CMD: 'INIT' }, modelWithKey);
-  makeUpdates(appView(newModel), DOMEvents);
-  newModel = appUpdate({ CMD: 'INITTED' }, newModel);
-  makeUpdates(appView(newModel), DOMEvents);
+  return getEnv()
+    .fetch(`https://api.themoviedb.org/3/configuration?api_key=${opts.key || ''}`)
+    .then((resp) => {
+      if (!resp.ok) {
+        throw new Error(resp.statusText);
+      }
+
+      return resp.json();
+    })
+    .then((data) => {
+      const {
+        base_url: baseUrl,
+        secure_base_url: secureBaseUrl,
+        backdrop_sizes: backdropSizes,
+        logo_sizes: logoSizes,
+        poster_sizes: posterSizes,
+        profile_sizes: profileSizes,
+        still_sizes: stillSizes,
+      } = data.images;
+
+      newModel = Object.assign({}, model, {
+        AUTH_KEY: opts.key,
+        images: {
+          baseUrl,
+          secureBaseUrl,
+          backdropSizes,
+          logoSizes,
+          posterSizes,
+          profileSizes,
+          stillSizes,
+        },
+      });
+
+      if (rootElement) {
+        // eslint-disable-next-line no-param-reassign
+        rootElement.innerHTML = '<div id="app" class="app"></div>';
+      }
+
+      newModel = appUpdate({ CMD: 'INIT' }, newModel);
+      makeUpdates(appView(newModel), DOMEvents);
+      newModel = appUpdate({ CMD: 'INITTED' }, newModel);
+      makeUpdates(appView(newModel), DOMEvents);
+    })
+    .catch((e) => {
+      if (rootElement) {
+        // eslint-disable-next-line no-param-reassign
+        rootElement.innerHTML =
+          '<div id="app" class="app--fail">themovieDB seems to be down</div>';
+      }
+
+      return e;
+    });
 };
 
 export default app;

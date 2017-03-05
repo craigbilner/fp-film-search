@@ -5,10 +5,52 @@
 html {
     height: 100%;
     overflow: hidden;
+    background-color: black;
+    color: white;
 }
 
 body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+body > div {
+    height: 100%;
+}
+
+.app {
+    height: 100%;
+}
+
+.film-search {
+    padding: 24px;
+    display: flex;
+    flex-flow: column;
+}
+
+.film-search__search-box {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 40px;
+    width: 350px;
+    border: none;
+    background: none;
+    outline: none;
+    color: white;
+    font-size: 28px;
+    padding-bottom: 4px;
+    border-bottom: 4px solid white;
+}
+
+.search-results {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 16px 0 0 0;
+}
+
+.movie-card {
+    height: 400px;
+    width: 300px;
+    padding: 8px;
 }
