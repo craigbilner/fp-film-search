@@ -27,9 +27,15 @@ body > div {
     padding: 24px;
     display: flex;
     flex-flow: column;
+    height: 100%;
 }
 
-.film-search__search-box {
+.search-input {
+    display: flex;
+    height: 52px;
+}
+
+.search-input__search-box {
     -webkit-appearance: none;
     appearance: none;
     height: 40px;
@@ -41,16 +47,41 @@ body > div {
     font-size: 28px;
     padding-bottom: 4px;
     border-bottom: 4px solid white;
+    margin: 0 16px 0 0;
+}
+
+.search-input__count {
+    padding: 8px;
+    font-size: 2rem;
 }
 
 .search-results {
     display: flex;
     flex-wrap: wrap;
-    margin: 16px 0 0 0;
+    margin: 28px 0 0 0;
+    overflow: auto;
 }
 
 .movie-card {
     height: 400px;
-    width: 300px;
+    width: 200px;
     padding: 8px;
+}
+
+.movie-card__img {
+    height: 288px;
+}
+
+.movie-card__details {
+    display: flex;
+    flex-flow: column;
+    margin: 4px 0 0 0;
+}
+
+.movie-card__detail {
+    display: flex;
+}
+
+.movie-card__vote {
+    font-size: 3rem;
 }

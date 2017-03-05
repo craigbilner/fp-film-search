@@ -7,7 +7,8 @@
     "test": true,
     "expect": true,
     "fetch": true,
-    "navigator": true
+    "navigator": true,
+    "window": true
   },
   "rules": {
     "no-confusing-arrow": 0
