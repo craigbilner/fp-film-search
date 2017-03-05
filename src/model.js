@@ -2,7 +2,6 @@
 
 const model = {
   hasInitiated: false,
-  AUTH_KEY: '',
   searchFailed: false,
   searchTerm: '',
   images: {

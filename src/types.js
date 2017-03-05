@@ -31,7 +31,6 @@ export type Movie = {
 
 export type Model = {
   hasInitiated: boolean,
-  AUTH_KEY: string,
   searchTerm: string,
   searchFailed: boolean,
   movies: {
@@ -76,10 +75,6 @@ export type View = (m: Model) => DOMUpdate[];
 
 // eslint-disable-next-line no-undef
 export type DOMEventsType = (c: CMD) => (evt: UIEvent) => void;
-
-export type AppOpts = {
-  key? : string,
-};
 
 export type HttpProps = {
   OK: CMD,

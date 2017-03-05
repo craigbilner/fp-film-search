@@ -5,10 +5,6 @@ import model from './src/model';
 import update from './src/update';
 import view from './src/view';
 
-const opts = {
-  key: 'TEST',
-};
-
 const initFetch = (ok = true) => () => Promise.resolve({
   ok,
   json() {
@@ -62,7 +58,7 @@ describe('the app', () => {
       const doc = w.document;
       global.fetch = initFetch();
 
-      app(model, update, view, doc, doc.getElementById('root'), opts)
+      app(model, update, view, doc, doc.getElementById('root'))
         .then(() => {
           const appEl = doc.querySelectorAll('#app');
 
@@ -78,7 +74,7 @@ describe('the app', () => {
       const doc = w.document;
       global.fetch = initFetch(false);
 
-      app(model, update, view, doc, doc.getElementById('root'), opts)
+      app(model, update, view, doc, doc.getElementById('root'))
         .then(() => {
           const appEl = doc.querySelectorAll('.app--fail');
 
@@ -94,7 +90,7 @@ describe('the app', () => {
       const doc = w.document;
       global.fetch = initFetch();
 
-      app(model, update, view, doc, doc.getElementById('root'), opts)
+      app(model, update, view, doc, doc.getElementById('root'))
         .then(() => {
           const searchBoxes = doc.querySelectorAll('#searchBox');
 
@@ -110,7 +106,7 @@ describe('the app', () => {
       const doc = w.document;
       global.fetch = initFetch();
 
-      app(model, update, view, doc, doc.getElementById('root'), opts)
+      app(model, update, view, doc, doc.getElementById('root'))
         .then(() => {
           const searchResults = doc.querySelector('#searchResults');
 
@@ -126,7 +122,7 @@ describe('the app', () => {
       const doc = w.document;
       global.fetch = initFetch();
 
-      app(model, update, view, doc, doc.getElementById('root'), opts)
+      app(model, update, view, doc, doc.getElementById('root'))
         .then(() => {
           global.fetch = sinon.stub().returns(Promise.resolve());
 
@@ -136,12 +132,7 @@ describe('the app', () => {
           e.initEvent('keyup', false, true);
           sb.dispatchEvent(e);
 
-          const expectedURL = 'https://api.themoviedb.org/3/search/multi' +
-            '?api_key=TEST' +
-            '&language=en-US' +
-            '&query=jack' +
-            '&page=1' +
-            '&include_adult=false';
+          const expectedURL = '/find/jack';
 
           const [actual] = global.fetch.firstCall.args;
 
@@ -157,7 +148,7 @@ describe('the app', () => {
       const doc = w.document;
       global.fetch = initFetch();
 
-      app(model, update, view, doc, doc.getElementById('root'), opts)
+      app(model, update, view, doc, doc.getElementById('root'))
         .then(() => {
           global.fetch = movieFetch;
 
@@ -183,7 +174,7 @@ describe('the app', () => {
       const doc = w.document;
       global.fetch = initFetch();
 
-      app(model, update, view, doc, doc.getElementById('root'), opts)
+      app(model, update, view, doc, doc.getElementById('root'))
         .then(() => {
           global.fetch = () => Promise.reject({
             message: 'an error',

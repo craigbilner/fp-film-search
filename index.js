@@ -7,6 +7,4 @@ import view from './src/view';
 import './sw-init';
 import './index.css';
 
-app(model, update, view, document, document.getElementById('root'), {
-  key: 'API_KEY',
-});
+app(model, update, view, document, document.getElementById('root'));

@@ -3,16 +3,6 @@
 import type { UpdateCMD, Model } from './types';
 import { http } from './app';
 
-/* eslint-disable prefer-template */
-const makeURL = (AUTH_KEY, term) =>
-'https://api.themoviedb.org/3/search/multi' +
-'?api_key=' + AUTH_KEY +
-'&language=en-US' +
-'&query=' + term +
-'&page=1' +
-'&include_adult=false';
-/* eslint-disable prefer-template */
-
 const stringToDate = (s) => {
   if (!s) {
     return null;
@@ -69,7 +59,7 @@ const update = ({ CMD, data = {} }: UpdateCMD, model: Model) => {
       http({
         OK: 'SEARCH_SUCCESS',
         ERR: 'SEARCH_FAIL',
-        url: makeURL(model.AUTH_KEY, data.target.value),
+        url: `/find/${data.target.value}`,
       });
 
       return changeModel(model, {

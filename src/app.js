@@ -5,7 +5,6 @@ import type {
   Model,
   Update,
   View,
-  AppOpts,
   DOMEventsType,
   Event,
   HttpProps,
@@ -92,13 +91,13 @@ const app = (model: Model,
              view: View,
              doc: Document, // eslint-disable-line no-undef
              rootElement: ?HTMLElement, // eslint-disable-line no-undef
-             opts: AppOpts = {}) => {
+             ) => {
   appUpdate = update;
   appView = view;
   appNodeUpdate = nodeUpdate(doc);
 
   return getEnv()
-    .fetch(`https://api.themoviedb.org/3/configuration?api_key=${opts.key || ''}`)
+    .fetch('/config')
     .then((resp) => {
       if (!resp.ok) {
         throw new Error(resp.statusText);
@@ -118,7 +117,6 @@ const app = (model: Model,
       } = data.images;
 
       newModel = Object.assign({}, model, {
-        AUTH_KEY: opts.key,
         images: {
           baseUrl,
           secureBaseUrl,

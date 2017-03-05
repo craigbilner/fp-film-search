@@ -1,4 +1,4 @@
-const VERSION = 6;
+const VERSION = 8;
 
 this.addEventListener('fetch', event => event.respondWith(
   caches
