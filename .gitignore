@@ -3,3 +3,4 @@ node_modules
 *.log
 public
 manifest.json
+.DS_Store
