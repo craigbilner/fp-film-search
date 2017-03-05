@@ -42,7 +42,7 @@ const view = (model: Model) => {
         html: `
         <div class="film-search">
           <div class="search-input">
-            <input id="searchBox" type="search" class="search-input__search-box" />
+            <input id="searchBox" type="search" class="search-input__search-box" autofocus />
             <div id="totalResults" class="search-input__count"></div>
           </div>
           <div id="searchResults" class="search-results">
