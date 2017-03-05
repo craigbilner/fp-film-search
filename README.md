@@ -1,4 +1,5 @@
 # Film Search 2000
+[![CircleCI](https://circleci.com/gh/craigbilner/fp-film-search.svg?style=svg)](https://circleci.com/gh/craigbilner/fp-film-search)
 
 A frameworkless FP approach to a search box and list thing
 
