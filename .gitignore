@@ -1,6 +1,6 @@
 node_modules
 .idea
-*.log
+*.log*
 public
 manifest.json
 .DS_Store
