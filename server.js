@@ -34,4 +34,6 @@ app.get('/find/:q', (req, res) => {
 
 app.get('/', (req, res) => res.render('index', htmlOpts));
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => console.log(`Film search 2000 listening on port ${PORT}!`));
