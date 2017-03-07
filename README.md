@@ -10,3 +10,7 @@ It's the "hands-off" stack, no transpiling, just [rollup](http://rollupjs.org/) 
 ## Output
 
 A text box that you can type into which makes film stuff appear in some flex-box type wrapped list underneath
+
+## Health warning ⚠️️
+
+Just a learning experiment to try out a different tech stack and "do it Vanilla" so won't work if you don't have fetch and service workers...and it's pretty minimalist and doesn't show a spinner when it's thinking ;-)
