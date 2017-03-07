@@ -43,7 +43,8 @@
     "flow": "flow",
     "flow-watch": "npm run watch 'clear && npm run flow'",
     "start": "node server.js",
-    "start-watch": "nodemon server.js"
+    "start-watch": "nodemon server.js",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
