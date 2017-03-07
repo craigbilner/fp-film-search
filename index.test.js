@@ -199,3 +199,64 @@ describe('the app', () => {
     });
   });
 });
+
+describe('the view', () => {
+  test('should render images with the secure base URL', (done) => {
+    const imgModel = {
+      hasInitiated: true,
+      searchFailed: false,
+      searchTerm: 'jack reacher',
+      images: {
+        baseUrl: 'http://image.tmdb.org/t/p/',
+        secureBaseUrl: 'https://image.tmdb.org/t/p/',
+        backdropSizes: [],
+        logoSizes: [],
+        posterSizes: [
+          'w92',
+          'w154',
+          'w185',
+          'w342',
+          'w500',
+          'w780',
+          'original',
+        ],
+        profileSizes: [],
+        stillSizes: [],
+      },
+      movies: {
+        page: 1,
+        list: [
+          {
+            adult: false,
+            backdropPath: '/ezXodpP429qK0Av89pVNlaXWJkQ.jpg',
+            genreIds: [],
+            id: 75780,
+            originalLanguage: 'en',
+            originalTitle: 'Jack Reacher',
+            overview: 'In an innocent heartland city...',
+            popularity: 5.942381,
+            posterPath: '/38bmEXmuJuInLs9dwfgOGCHmZ7l.jpg',
+            releaseDate: new Date(),
+            title: 'Jack Reacher',
+            video: false,
+            voteAverage: 6.3,
+            voteCount: 2530,
+          },
+        ],
+        totalPages: 1,
+        totalResults: 1,
+      },
+    };
+    const [{ html }] = view(imgModel);
+
+    jsdom.env(html, (err, w) => {
+      const img = w.document.querySelector('img');
+      const expected =
+        'https://image.tmdb.org/t/p/w185/38bmEXmuJuInLs9dwfgOGCHmZ7l.jpg';
+
+      expect(img.src).toBe(expected);
+
+      done();
+    });
+  });
+});

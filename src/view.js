@@ -12,10 +12,10 @@ const formatDate = d =>
 
 const toMovieCard = model => ({ posterPath, releaseDate, voteAverage: vote }) => {
   const {
-    baseUrl,
+    secureBaseUrl,
     posterSizes,
   } = model.images;
-  const postUrl = `${baseUrl}${posterSizes[2]}${posterPath}`;
+  const postUrl = `${secureBaseUrl}${posterSizes[2]}${posterPath}`;
 
   return `
     <div class="movie-card">
