@@ -3,6 +3,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import hash from 'rollup-plugin-hash';
 import postcss from 'rollup-plugin-postcss';
+import babili from 'rollup-plugin-babili';
 
 export default {
   entry: 'index.js',
@@ -19,5 +20,8 @@ export default {
       manifestKey: 'bundle',
     }),
     postcss(),
+    babili({
+      comments: false,
+    }),
   ],
 };
